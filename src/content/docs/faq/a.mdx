@@ -1,0 +1,20 @@
+---
+title: "questions you might have"
+---
+
+import { FileTree } from "@astrojs/starlight/components";
+
+### how are we storing the preferences ?
+
+- the model pref. is stored in `~/.config/git-acm/model.txt` file. the program reads the file and decides which model to use.
+- the autocommit pref. is stored in `~/.config/git-acm/autocommit.txt`. it has two values `enable` or `disable`.
+
+<FileTree>
+
+- .config
+  - git-acm
+    - model.txt don't manually change it
+    - autocommit.txt don't manually change it
+    - ...
+
+</FileTree>

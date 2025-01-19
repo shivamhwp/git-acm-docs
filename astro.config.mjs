@@ -7,21 +7,27 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   integrations: [
     starlight({
-      title: "git-acm",
+      title: "git-acm docs",
       social: {
         github: "https://github.com/shivamhwp/git-acm",
+        "x.com": "https://twitter.com/shivamhwp",
       },
       sidebar: [
         {
-          label: "Guides",
+          label: "guides",
           items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
+            { label: "introduction", slug: "guides/introduction" },
+            { label: "installation", slug: "guides/installation" },
+            { label: "configuration", slug: "guides/configuration" },
           ],
         },
         {
-          label: "Reference",
+          label: "reference",
           autogenerate: { directory: "reference" },
+        },
+        {
+          label: "faq",
+          autogenerate: { directory: "faq" },
         },
       ],
       customCss: ["./src/tailwind.css"],

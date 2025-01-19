@@ -1,0 +1,103 @@
+---
+title: commands reference
+description: a comprehensive guide to all commands and usage for git-acm.
+---
+
+import { Badge } from "@astrojs/starlight/components";
+
+this document serves as a reference for all commands available in `git-acm`, including their syntax, parameters, expected outputs, and examples.
+
+## installation commands
+
+### using curl <Badge text="preferred" variant="tip" />
+
+```bash
+curl -sSL https://raw.githubusercontent.com/shivamhwp/git-acm/main/install.sh | sh
+```
+
+- **description**: downloads and executes the installation script for `git-acm`.
+- **parameters**: none.
+- **expected output**: installation progress and success message.
+
+or
+
+### using cargo
+
+```bash
+cargo install git-acm
+```
+
+- **description**: installs `git-acm` using cargo, the rust package manager.
+- **parameters**: none.
+- **expected output**: confirmation of successful installation.
+
+## configuration commands
+
+### 1. set api provider <Badge text="required" variant="caution" />
+
+```bash
+git-acm use <api_name>
+```
+
+- **description**: sets the ai provider for generating commit messages.
+- **parameters**:
+  - `<api_name>`: one of the supported providers (`gemini`, `openai`, `anthropic`, `llama`).
+- **expected output**: confirmation of the selected api provider.
+
+### 2. enable auto-commit <Badge text="optional" variant="note" />
+
+```bash
+git-acm autocommit enable
+```
+
+- **description**: enables the auto-commit feature.
+- **parameters**: none.
+- **expected output**: confirmation that auto-commit is enabled.
+
+### 3. disable auto-commit
+
+```bash
+git-acm autocommit disable
+```
+
+- **description**: disables the auto-commit feature.
+- **parameters**: none.
+- **expected output**: confirmation that auto-commit is disabled.
+
+## usage commands
+
+### generate commit message
+
+```bash
+git-acm
+```
+
+- **description**: generates a commit message using the selected api provider based on the changes in your code.
+- **parameters**: none.
+- **expected output**: a generated commit message.
+
+### help
+
+```bash
+git-acm help
+```
+
+- **description**: displays the help menu for `git-acm`.
+- **parameters**: none.
+- **expected output**: a list of available commands and their descriptions.
+
+## error messages and troubleshooting
+
+- **error: invalid api provider**
+
+  - **message**: "error: unsupported api provider. please use one of: gemini, openai, anthropic, llama."
+  - **solution**: ensure you are using a valid api provider name.
+
+- **error: api key missing**
+  - **message**: "error: api key is not set. please configure your api key in the .env file."
+  - **solution**: check your `.env` file for the correct api key configuration.
+
+## technical specifications
+
+- **supported platforms**: linux, macos, windows (via wsl).
+- **dependencies**: requires git and rust (for cargo installation).

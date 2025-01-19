@@ -1,0 +1,115 @@
+---
+title: "git-acm configuration guide"
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+This guide explains how to configure and set up the git-acm tool for generating AI-powered commit messages.
+
+## Prerequisites
+
+Before configuring git-acm, ensure you have:
+
+- Git initialized in your project directory
+- At least one of the supported AI API keys
+- A `.env` file in your project root (recommended) or environment variables set
+
+## API Configuration
+
+### Available APIs
+
+git-acm supports multiple AI providers:
+
+- Gemini (Google)
+- OpenAI (gpt-4o)
+- Anthropic (Claude)
+- Llama (via Ollama)
+
+### Setting Up API Keys
+
+<Steps>
+
+1. **Get Your API Keys**
+
+   - gemini: Visit [google AI Studio](https://aistudio.google.com/app/apikey)
+   - openai: Visit [openai Platform](https://platform.openai.com/api-keys)
+   - anthropic: Visit [anthropic console](https://console.anthropic.com/settings/keys)
+   - llama: use [ollama](https://ollama.com/)
+
+2. **Configure Environment Variables**
+
+   Add the following to your project's `.env` file or export them in your terminal:
+
+   ```bash title=".env"
+   # Gemini Configuration
+   GEMINI_API_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+   GEMINI_API_KEY="your-gemini-api-key"
+
+   # Anthropic Configuration
+   ANTHROPIC_API_URL="https://api.anthropic.com/v1/messages"
+   ANTHROPIC_API_KEY="your-anthropic-api-key"
+
+   # OpenAI Configuration
+   OPENAI_API_URL="https://api.openai.com/v1/chat/completions"
+   OPENAI_API_KEY="your-openai-api-key"
+
+   # Llama Configuration (using Ollama)
+   LLAMA_API_URL="http://localhost:11434/api/generate"
+   LLAMA_MODEL_NAME="llama3.2:1b"
+   ```
+
+</Steps>
+## Selecting an API Provider
+
+After setting up your API keys, choose which provider to use:
+
+```bash
+git-acm use <api_name>
+```
+
+Replace `<api_name>` with one of:
+
+- `gemini`
+- `openai`
+- `anthropic`
+- `llama`
+
+## Auto-commit Configuration
+
+git-acm includes an auto-commit feature that can be enabled or disabled:
+
+```bash
+# Enable auto-commit
+git-acm autocommit enable
+
+# Disable auto-commit
+git-acm autocommit disable
+```
+
+When enabled, git-acm will automatically commit changes with the generated message.
+
+## Usage After Configuration
+
+Once configured, simply run:
+
+```bash
+git-acm
+```
+
+This will generate a commit message using your selected API provider.
+
+## Troubleshooting
+
+If you encounter issues:
+
+1. Verify your API keys are correctly set in the `.env` file
+2. Ensure Git is initialized in your project directory
+3. Check that you've selected an API provider using `git-acm use`
+4. For Llama, ensure Ollama is running locally
+5. Verify your internet connection for cloud API providers
+
+## Support
+
+For bug reports or issues, contact me:
+
+- twitter: [@shivamhwp](https://x.com/shivamhwp)
