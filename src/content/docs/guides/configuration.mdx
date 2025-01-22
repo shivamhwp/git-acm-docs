@@ -3,6 +3,7 @@ title: "git-acm configuration guide"
 ---
 
 import { Steps } from "@astrojs/starlight/components";
+import { Badge } from "@astrojs/starlight/components";
 
 This guide explains how to configure and set up the git-acm tool for generating AI-powered commit messages.
 
@@ -24,6 +25,7 @@ git-acm supports multiple AI providers:
 - OpenAI (gpt-4o)
 - Anthropic (Claude)
 - Llama (via Ollama)
+- deepseek <Badge text="new" variant="success" />
 
 ### Setting Up API Keys
 
@@ -35,6 +37,7 @@ git-acm supports multiple AI providers:
    - openai: Visit [openai Platform](https://platform.openai.com/api-keys)
    - anthropic: Visit [anthropic console](https://console.anthropic.com/settings/keys)
    - llama: use [ollama](https://ollama.com/)
+   - deepseek: visit [deepseek](https://www.deepseek.com/)
 
 2. **Configure Environment Variables**
 
@@ -56,6 +59,10 @@ git-acm supports multiple AI providers:
    # Llama Configuration (using Ollama)
    LLAMA_API_URL="http://localhost:11434/api/generate"
    LLAMA_MODEL_NAME="llama3.2:1b"
+
+   # for deepseek api
+   DEEPSEEEK_API_URL="https://api.deepseek.com/chat/completions"
+   DEEPSEEEK_API_KEY=""
    ```
 
 </Steps>
@@ -73,6 +80,7 @@ Replace `<api_name>` with one of:
 - `openai`
 - `anthropic`
 - `llama`
+- `deepseek`
 
 ## Auto-commit Configuration
 

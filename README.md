@@ -1,7 +1,2 @@
-what should be here
-
-what is git-acm
-introduction
-detailed description of commands. and how they work.
-use
-autocommit
+not much here. these are the source code for [git-acm](https://github.com/shivamhwp/git-acm)
+[live here](https://git-acm.pages.dev)
