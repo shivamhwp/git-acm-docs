@@ -2,21 +2,30 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
+import starlightThemeRapide from "starlight-theme-rapide";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     starlight({
+      plugins: [starlightThemeRapide()],
       title: "git-acm docs",
-      social: {
-        github: "https://github.com/shivamhwp/git-acm",
-        "x.com": "https://twitter.com/shivamhwp",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "github",
+          href: "https://github.com/shivamhwp/git-acm",
+        },
+        {
+          icon: "x.com",
+          label: "x.com",
+          href: "https://twitter.com/shivamhwp",
+        },
+      ],
       sidebar: [
         {
           label: "guides",
           items: [
-            { label: "introduction", slug: "guides/introduction" },
             { label: "installation", slug: "guides/installation" },
             { label: "configuration", slug: "guides/configuration" },
           ],

@@ -9,6 +9,8 @@ this document serves as a reference for all commands available in `git-acm`, inc
 
 ## installation commands
 
+---
+
 ### using curl <Badge text="preferred" variant="tip" />
 
 ```bash
@@ -33,16 +35,18 @@ cargo install git-acm
 
 ## configuration commands
 
-### 1. set api provider <Badge text="required" variant="caution" />
+---
+
+### 1. set model <Badge text="required" variant="caution" />
 
 ```bash
-git-acm use <api_name>
+git-acm use <model_name>
 ```
 
-- **description**: sets the ai provider for generating commit messages.
+- **description**: sets the model for generating commit messages.
 - **parameters**:
-  - `<api_name>`: one of the supported providers (`gemini`, `openai`, `anthropic`, `llama`, `deepseek`).
-- **expected output**: confirmation of the selected api provider.
+  - `<model_name>`: one of the supported models.
+- **expected output**: confirmation of the selected model.
 
 ### 2. enable auto-commit <Badge text="optional" variant="note" />
 
@@ -66,15 +70,27 @@ git-acm autocommit disable
 
 ## usage commands
 
+---
+
 ### generate commit message
 
 ```bash
 git-acm
 ```
 
-- **description**: generates a commit message using the selected api provider based on the changes in your code.
+- **description**: generates a commit message using the selected model based on the changes in your code.
 - **parameters**: none.
 - **expected output**: a generated commit message.
+
+### list models
+
+```bash
+git-acm list
+```
+
+- **description**: lists all the models available.
+- **parameters**: none.
+- **expected output**: a list of models.
 
 ### help
 
