@@ -5,111 +5,50 @@ title: "git-acm configuration guide"
 import { Steps } from "@astrojs/starlight/components";
 import { Badge } from "@astrojs/starlight/components";
 
-This guide explains how to configure and set up the git-acm tool for generating AI-powered commit messages.
+This guide explains how to configure and set up `git-acm` powered by OpenRouter.
 
 ## Prerequisites
 
-Before configuring git-acm, ensure you have:
+Before configuring `git-acm`, ensure you have:
 
 - Git initialized in your project directory
-- At least one of the supported AI API keys
+- An OpenRouter API key
 - A `.env` file in your project root (recommended) or environment variables set
 
-## Available APIs
+## Model provider
 
-git-acm supports multiple models:
+`git-acm` uses OpenRouter as the model provider and supports many models under one API.
 
-- claude sonnet 4
-- claude opus 4
-- o1
-- gpt-4o
-- gpt-4.1
-- o1-pro
-- gpt-4.1-mini
-- gpt-4.1-nano
-- claude-3.7-sonnet
-- claude-3.5-sonnet
-- claude-3.5-haiku
-- gemini-2.5-pro
-- gemini-2.0-flash
-- gemini-2.0-flash-lite
-- deepseek-chat
-- deepseek-reasoner
-- llama-4-scout
-- llama-4-maverick
-- llama-3.3-70b-instruct
-- llama-3.1-8b-instruct
-- llama-3.1-70b-instruct
-- llama-3.2-3b-instruct
-
-### Setting Up API Keys
+### Setting up API key
 
 <Steps>
 
-1. **Get Your API Keys**
+1. **Get your API key**
 
-   - gemini: Visit [google AI Studio](https://aistudio.google.com/app/apikey)
-   - openai: Visit [openai Platform](https://platform.openai.com/api-keys)
-   - anthropic: Visit [anthropic console](https://console.anthropic.com/settings/keys)
-   - llama: use [ollama](https://ollama.com/)
-   - deepseek: visit [deepseek](https://www.deepseek.com/)
+   - Visit [OpenRouter](https://openrouter.ai/keys) and create a key.
 
-2. **Configure Environment Variables**
+2. **Configure environment variables**
 
    Add the following to your project's `.env` file or export them in your terminal:
 
    ```bash title=".env"
-   # Gemini Configuration
-   GEMINI_API_KEY="your-gemini-api-key"
-
-   # Anthropic Configuration
-   ANTHROPIC_API_KEY="your-anthropic-api-key"
-
-   # OpenAI Configuration
-   OPENAI_API_KEY="your-openai-api-key"
-
-   # Llama Configuration (using Ollama)
-   LLAMA_API_URL="http://localhost:11434/api/generate"
-   LLAMA_MODEL_NAME="llama3.2:1b"
-
-   # for deepseek api
-   DEEPSEEEK_API_KEY=""
+   OPENROUTER_API_KEY="your_openrouter_api_key"
    ```
 
 </Steps>
-## Selecting an API Provider
+## Select a model
 
-after setting up the api keys, select the model you want to use:
+After setting up the API key, fetch models and select one:
 
 ```bash
-git-acm use <model_name>
-```
+# fetch and cache models once
+git-acm get-models
 
-Replace `<model_name>` with one of:
+# list cached models
+git-acm list
 
-```
-- claude sonnet 4
-- claude opus 4
-- o1
-- gpt-4o
-- gpt-4.1
-- o1-pro
-- gpt-4.1-mini
-- gpt-4.1-nano
-- claude-3.7-sonnet
-- claude-3.5-sonnet
-- claude-3.5-haiku
-- gemini-2.5-pro
-- gemini-2.0-flash
-- gemini-2.0-flash-lite
-- deepseek-chat
-- deepseek-reasoner
-- llama-4-scout
-- llama-4-maverick
-- llama-3.3-70b-instruct
-- llama-3.1-8b-instruct
-- llama-3.1-70b-instruct
-- llama-3.2-3b-instruct
+# copy model id from the list or from the OpenRouter models page
+git-acm use <model_id>
 ```
 
 ## Auto-commit Configuration
@@ -126,7 +65,7 @@ git-acm autocommit disable
 
 When enabled, git-acm will automatically commit changes with the generated message.
 
-## Usage After Configuration
+## Usage after configuration
 
 Once configured, simply run:
 
@@ -142,12 +81,24 @@ If you encounter issues:
 
 1. Verify your API keys are correctly set in the `.env` file
 2. Ensure Git is initialized in your project directory
-3. Check that you've selected an modelusing `git-acm use`
-4. For Llama, ensure Ollama is running locally
-5. Verify your internet connection for cloud API providers
+3. Check that you've selected a model using `git-acm use`
+4. Verify your internet connection
 
 ## Support
 
 For bug reports or issues, contact me:
 
 - twitter: [@shivamhwp](https://x.com/shivamhwp)
+
+## Config storage
+
+`git-acm` stores preferences and cached models in your OS config directory:
+
+- macOS: `~/Library/Application Support/git-acm`
+- Linux: `$XDG_CONFIG_HOME/git-acm`
+- Windows: `%APPDATA%/git-acm`
+
+Files created there:
+
+- `git-acm-prefs.json` — selected model id and autocommit preference
+- `models.json` — cached list of models from OpenRouter

@@ -7,48 +7,35 @@ import { Badge } from "@astrojs/starlight/components";
 
 this document serves as a reference for all commands available in `git-acm`, including their syntax, parameters, expected outputs, and examples.
 
-## installation commands
+## core commands
 
 ---
 
-### using curl <Badge text="preferred" variant="tip" />
+### fetch models <Badge text="run once" variant="note" />
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/shivamhwp/git-acm/main/install.sh | sh
+git-acm get-models
 ```
 
-- **description**: downloads and executes the installation script for `git-acm`.
-- **parameters**: none.
+- **description**: fetches models from OpenRouter and stores them locally.
 - **expected output**: installation progress and success message.
-
-or
-
-### using cargo
-
-```bash
-cargo install git-acm
-```
-
-- **description**: installs `git-acm` using cargo, the rust package manager.
-- **parameters**: none.
-- **expected output**: confirmation of successful installation.
 
 ## configuration commands
 
 ---
 
-### 1. set model <Badge text="required" variant="caution" />
+### set model <Badge text="required" variant="caution" />
 
 ```bash
-git-acm use <model_name>
+git-acm use <model_id>
 ```
 
-- **description**: sets the model for generating commit messages.
+- **description**: selects a model by id (copy from OpenRouter models page or `git-acm list`).
 - **parameters**:
-  - `<model_name>`: one of the supported models.
+  - `<model_id>`: for example, `anthropic/claude-3.7-sonnet`.
 - **expected output**: confirmation of the selected model.
 
-### 2. enable auto-commit <Badge text="optional" variant="note" />
+### enable auto-commit <Badge text="optional" variant="note" />
 
 ```bash
 git-acm autocommit enable
@@ -58,7 +45,7 @@ git-acm autocommit enable
 - **parameters**: none.
 - **expected output**: confirmation that auto-commit is enabled.
 
-### 3. disable auto-commit
+### disable auto-commit
 
 ```bash
 git-acm autocommit disable
@@ -68,7 +55,7 @@ git-acm autocommit disable
 - **parameters**: none.
 - **expected output**: confirmation that auto-commit is disabled.
 
-## usage commands
+## usage
 
 ---
 
@@ -80,15 +67,15 @@ git-acm
 
 - **description**: generates a commit message using the selected model based on the changes in your code.
 - **parameters**: none.
-- **expected output**: a generated commit message.
+- **expected output**: a generated commit message (also copied to clipboard).
 
-### list models
+### list cached models
 
 ```bash
 git-acm list
 ```
 
-- **description**: lists all the models available.
+- **description**: lists locally cached models fetched via `get-models`.
 - **parameters**: none.
 - **expected output**: a list of models.
 

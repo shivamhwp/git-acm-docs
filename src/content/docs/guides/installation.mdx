@@ -7,7 +7,7 @@ import { Steps } from "@astrojs/starlight/components";
 
 To install git-acm, follow these steps:
 
-### Method 1: Using `curl`
+### Install using `curl` (recommended)
 
 <Steps>
 
@@ -20,22 +20,14 @@ To install git-acm, follow these steps:
 
 </Steps>
 
-### Method 2: Using `cargo`
+### Update to the latest version
 
-<Steps>
+- Re-run the same installation command. It detects an existing version and installs a newer one if available.
 
-1. If you have `cargo` installed on your system, you can install git-acm using the following command:
+### Verify installation
 
-   ```bash
-   cargo install git-acm
-   ```
+```bash
+git-acm --version
+```
 
-2. After installation, you can verify that git-acm is installed correctly by running: (the latest verison is v1.1.1)
-
-   ```bash
-   git-acm --version
-   ```
-
-3. This should display the version of git-acm installed on your system.
-
-</Steps>
+This prints the installed version.
